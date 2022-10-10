@@ -4,8 +4,8 @@ import React from "react";
 const Home = () => {
   return (
     <>
-      <div>div</div>
-      <p>p</p>
+      <div></div>
+      <p></p>
     </>
   );
 };
