@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Album from "../Album";
-
 import { useNavigate } from "react-router-dom";
+
 AlbumList.propTypes = {
   albumList: PropTypes.array.isRequired,
 };

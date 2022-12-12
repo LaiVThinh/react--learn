@@ -1,26 +1,41 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Controller } from "react-hook-form";
 import { TextField } from "@mui/material";
+import PropTypes from "prop-types";
+import React from "react";
+import { useController } from "react-hook-form";
 
 InputField.propTypes = {
-  form: PropTypes.object.isRequired,
+  control: PropTypes.object.isRequired,
   name: PropTypes.string.isRequired,
   label: PropTypes.string,
   disabled: PropTypes.bool,
 };
 
 function InputField(props) {
-  const { form, name, label, disabled } = props;
+  // object destructuring
+  const { control, name, label, disabled, ...rest } = props;
+
+  const {
+    field: { value, onChange, onBlur },
+    fieldState: { error },
+  } = useController({
+    name: name,
+    control: control,
+  });
+
   return (
-    <Controller
-    
-      name={name}
-      control={form.control }
-      as={TextField}
-      fullWidth
-      label={label}
+    <TextField
+      error={!!error}
       disabled={disabled}
+      label={label}
+      value={value}
+      helperText={error ? error.message : undefined}
+      onChange={(event) => {
+        onChange(event.target.value);
+      }}
+      onBlur={() => {
+        onBlur();
+      }}
+      {...rest}
     />
   );
 }
