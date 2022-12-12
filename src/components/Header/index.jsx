@@ -6,17 +6,14 @@ import IconButton from "@mui/material/IconButton";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import * as React from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { BrowserRouter, NavLink, useNavigate } from "react-router-dom";
 
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
-import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
-import TextField from "@mui/material/TextField";
-import { useState } from "react";
-
+import Register from "../../features/Auth/components/Register";
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -43,15 +40,19 @@ export default function Header() {
             News
           </Typography>
           <NavLink to="/todo">
-            <Button color="inherit">Todos list </Button>
+            <Button color="inherit" sx={{ color: "white" }}>
+              Todos list{" "}
+            </Button>
           </NavLink>
 
           <NavLink to="/album">
-            <Button color="inherit">Album list </Button>
+            <Button color="inherit" sx={{ color: "white" }}>
+              Album list{" "}
+            </Button>
           </NavLink>
           <button
             onClick={() => {
-              navigate("container/counter");
+              navigate("/counter");
             }}
           >
             Counter
@@ -62,36 +63,10 @@ export default function Header() {
         </Toolbar>
       </AppBar>
 
-      <Dialog
-        disableEscapeKeyDown
-        onBackdropClick={true}
-        open={open}
-        onClose={handleClose}
-      >
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="phone"
-            label="Phone"
-            type="number"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
+      <Dialog open={!!open} onClose={handleClose}>
+        <DialogContentText>
+          <Register />
+        </DialogContentText>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
           <Button onClick={handleClose}>Subscribe</Button>

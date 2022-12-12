@@ -5,7 +5,7 @@ import Home from "../pages/Home";
 import Container from "../layouts/Container";
 import Counter from "../features/Album/components/Counter";
 import ColorBox from "../features/Album/components/ColorBox";
-
+import React from "react";
 const router = createBrowserRouter([
   {
     path: "/",
